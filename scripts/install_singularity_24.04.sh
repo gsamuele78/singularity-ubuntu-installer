@@ -4,6 +4,7 @@ set -euo pipefail
 SING_VER="v4.3.4"
 GO_VER="1.25.3"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 
 apt update -y
 # Install required build/runtime dependencies (including FUSE3 headers for squashfuse)
@@ -73,8 +74,8 @@ systemctl reload apparmor
 #cd "$SCRIPT_DIR"
 
 # Install singularity-cache-cleaner systemd service
-install -m 755 "${SCRIPT_DIR}/scripts/clean_cache.sh" /usr/local/bin/singularity-cache-cleaner
-install -m 644 "${SCRIPT_DIR}/systemd/singularity-cache-cleaner.service" /etc/systemd/system/
+install -m 755 "${SCRIPT_DIR}/clean_cache.sh" /usr/local/bin/singularity-cache-cleaner
+install -m 644 "${PARENT_DIR}/systemd/singularity-cache-cleaner.service" /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable singularity-cache-cleaner.service
 
