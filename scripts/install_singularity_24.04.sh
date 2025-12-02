@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SING_VER="v4.3.3"
-GO_VER="1.22.5"
+SING_VER="v4.3.4"
+GO_VER="1.25.3"
 
 apt update -y
 # Install required build/runtime dependencies (including FUSE3 headers for squashfuse)
@@ -20,12 +20,13 @@ apt install -y \
     fuse2fs \
     cryptsetup \
     runc \
-    squashfs-tools \
-    squashfs-tools-ng \
     uidmap \
     uuid-dev \
     git \
     wget \
+    conmon \
+    squashfs-tools \
+    squashfs-tools-ng \
     zlib1g-dev
 
 cd /usr/local/src

@@ -31,6 +31,7 @@ jobs:
             uuid-dev \
             git \
             wget \
+            conmon \
             zlib1g-dev
 
       - name: Install Go

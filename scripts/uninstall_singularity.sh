@@ -29,6 +29,7 @@ apt remove -y \
 	uuid-dev \
 	git \
 	wget \
+    conmon \
 	zlib1g-dev
 apt autoremove -y
 
