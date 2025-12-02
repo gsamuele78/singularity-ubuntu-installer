@@ -1,0 +1,28 @@
+name: Singularity CI
+on:
+  push:
+  pull_request:
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y squashfs-tools
+
+      - name: Install Go
+        run: wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz
+
+      - name: Build Singularity
+        run: |
+          export PATH=$PATH:/usr/local/go/bin
+          cd /usr/local/src
+          sudo git clone https://github.com/sylabs/singularity.git
+          cd singularity
+          sudo ./mconfig
+          sudo make -C builddir
+          sudo make -C builddir install
+
+      - name: Run CI test
+        run: bash scripts/ci/github_ci_test.sh

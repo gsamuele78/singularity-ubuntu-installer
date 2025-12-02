@@ -1,0 +1,8 @@
+Bootstrap: docker
+From: alpine:latest
+
+%post
+    echo "Hello from definition file" > /message
+
+%runscript
+    cat /message

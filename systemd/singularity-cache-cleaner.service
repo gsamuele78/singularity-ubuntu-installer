@@ -1,0 +1,11 @@
+[Unit]
+Description=Clean Singularity Cache
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/singularity-cache-cleaner
+User=root
+
+[Install]
+WantedBy=multi-user.target
