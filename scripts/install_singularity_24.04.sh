@@ -5,7 +5,28 @@ SING_VER="v4.3.3"
 GO_VER="1.22.5"
 
 apt update -y
-apt install -y build-essential uuid-dev libgpgme-dev libseccomp-dev pkg-config git wget squashfs-tools cryptsetup
+# Install required build/runtime dependencies (including FUSE3 headers for squashfuse)
+apt install -y \
+    build-essential \
+    autoconf \
+    automake \
+    libtool \
+    pkg-config \
+    libgpgme-dev \
+    libseccomp-dev \
+    libsubid-dev \
+    libfuse3-dev \
+    fuse3 \
+    fuse2fs \
+    cryptsetup \
+    runc \
+    squashfs-tools \
+    squashfs-tools-ng \
+    uidmap \
+    uuid-dev \
+    git \
+    wget \
+    zlib1g-dev
 
 cd /usr/local/src
 wget https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz

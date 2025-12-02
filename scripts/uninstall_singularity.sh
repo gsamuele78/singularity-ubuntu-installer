@@ -9,7 +9,27 @@ rm -rf /usr/local/var/singularity
 rm -rf /usr/local/src/singularity
 rm -rf /usr/local/go
 
-apt remove -y build-essential uuid-dev libgpgme-dev libseccomp-dev pkg-config git wget squashfs-tools cryptsetup
+apt remove -y \
+	build-essential \
+	autoconf \
+	automake \
+	libtool \
+	pkg-config \
+	libgpgme-dev \
+	libseccomp-dev \
+	libsubid-dev \
+	libfuse3-dev \
+	fuse3 \
+	fuse2fs \
+	cryptsetup \
+	runc \
+	squashfs-tools \
+	squashfs-tools-ng \
+	uidmap \
+	uuid-dev \
+	git \
+	wget \
+	zlib1g-dev
 apt autoremove -y
 
 systemctl disable --now singularity-cache-cleaner.service || true
