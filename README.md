@@ -11,7 +11,7 @@ This repository provides:
 
 Supports:
 
-- Ubuntu 22.04 LTS
+
 - Ubuntu 24.04 LTS
 
 Requires no Docker or Kubernetes. Only root privileges for installation.
