@@ -49,9 +49,31 @@ git submodule update --init --recursive
 make -C builddir
 make -C builddir install
 
+#Ubuntu does not permit applications to create unprivileged user namespaces by default
+#install SingularityCE from source you must configure apparmor. 
+#Create an apparmor profile file at /etc/apparmor.d/singularity-ce
+
+tee /etc/apparmor.d/singularity-ce << 'EOF'
+# Permit unprivileged user namespace creation for SingularityCE starter
+abi <abi/4.0>,
+include <tunables/global>
+
+profile singularity-ce /usr/local/libexec/singularity/bin/starter{,-suid} flags=(unconfined) {
+  userns,
+
+  # Site-specific additions and overrides. See local/README for details.
+  include if exists <local/singularity-ce>
+}
+EOF
+
+#SingularityCE will now be able to create unprivileged user namespaces on your system
+systemctl reload apparmor
+
+
+
 # Install singularity-cache-cleaner systemd service
-install -m 755 /home/jfs/00-VScode-Projects/singularity-ubuntu-installer/scripts/clean_cache.sh /usr/local/bin/singularity-cache-cleaner
-install -m 644 /home/jfs/00-VScode-Projects/singularity-ubuntu-installer/systemd/singularity-cache-cleaner.service /etc/systemd/system/
+install -m 755 ./scripts/clean_cache.sh /usr/local/bin/singularity-cache-cleaner
+install -m 644 ./systemd/singularity-cache-cleaner.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable singularity-cache-cleaner.service
 

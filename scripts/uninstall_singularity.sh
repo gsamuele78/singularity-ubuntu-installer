@@ -7,6 +7,7 @@ rm -rf /usr/local/libexec/singularity
 rm -rf /usr/local/etc/singularity
 rm -rf /usr/local/var/singularity
 rm -rf /usr/local/src/singularity
+rm -rf /etc/apparmor.d/singularity-ce
 rm -rf /usr/local/go
 
 apt remove -y \

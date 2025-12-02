@@ -1,5 +1,5 @@
 PREFIX=/usr/local
-SING_VER=v4.3.3
+SING_VER=v4.3.4
 
 install:
 	bash scripts/install_singularity_24.04.sh
