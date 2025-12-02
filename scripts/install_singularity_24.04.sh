@@ -78,5 +78,7 @@ install -m 755 "${SCRIPT_DIR}/clean_cache.sh" /usr/local/bin/singularity-cache-c
 install -m 644 "${PARENT_DIR}/systemd/singularity-cache-cleaner.service" /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable singularity-cache-cleaner.service
-
+ln -s /usr/local/etc/singularity /etc/singularity
 singularity --version
+echo "Singularity ${SING_VER} installation complete."
+singularity buildcfg

@@ -2,6 +2,9 @@
 set -euo pipefail
 
 rm -f /usr/local/bin/singularity
+rm -f /usr/local/bin/run-singularity
+rm -f /usr/local/share/bash-completion/completions/singularity 
+rm -f /usr/local/share/man/man1/singularity
 rm -f /usr/local/bin/singularity-cache-cleaner
 rm -rf /usr/local/libexec/singularity
 rm -rf /usr/local/etc/singularity
@@ -9,6 +12,10 @@ rm -rf /usr/local/var/singularity
 rm -rf /usr/local/src/singularity
 rm -rf /etc/apparmor.d/singularity-ce
 rm -rf /usr/local/go
+rm -rf /etc/singularity
+    
+    
+
 
 apt remove -y \
 	build-essential \
@@ -28,10 +35,9 @@ apt remove -y \
 	squashfs-tools-ng \
 	uidmap \
 	uuid-dev \
-	git \
-	wget \
-    conmon \
+	conmon \
 	zlib1g-dev
+
 apt autoremove -y
 
 systemctl disable --now singularity-cache-cleaner.service || true
