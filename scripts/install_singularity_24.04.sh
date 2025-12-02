@@ -20,8 +20,8 @@ cd singularity
 git fetch --all --tags
 git checkout ${SING_VER}
 
-# Configure with seccomp support enabled
-./mconfig --with-seccomp
+# Configure Singularity (seccomp support is enabled by default)
+./mconfig
 make -C builddir
 make -C builddir install
 
