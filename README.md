@@ -1,9 +1,7 @@
 # Singularity Ubuntu Installer (Ubuntu 22.04 / 24.04)
 
-```markdown
-
-
 This repository provides:
+
 - Automated installation scripts for **SingularityCE 4.3.3**
 - Clean uninstall scripts
 - Systemd-managed Singularity cache cleaner
@@ -12,6 +10,7 @@ This repository provides:
 - GitHub Actions CI
 
 Supports:
+
 - Ubuntu 22.04 LTS
 - Ubuntu 24.04 LTS
 
@@ -19,9 +18,10 @@ Requires no Docker or Kubernetes. Only root privileges for installation.
 Normal users may run Singularity without special groups.
 
 ## Quick Start
+
 ```bash
 sudo bash scripts/install_singularity_24.04.sh
-````
+```
 
 To test:
 

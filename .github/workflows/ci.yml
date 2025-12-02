@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: sudo apt update && sudo apt install -y squashfs-tools
+        run: sudo apt update && sudo apt install -y build-essential uuid-dev libgpgme-dev libseccomp-dev pkg-config git wget squashfs-tools cryptsetup
 
       - name: Install Go
         run: wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz
@@ -20,7 +20,7 @@ jobs:
           cd /usr/local/src
           sudo git clone https://github.com/sylabs/singularity.git
           cd singularity
-          sudo ./mconfig
+          sudo ./mconfig --with-seccomp
           sudo make -C builddir
           sudo make -C builddir install
 

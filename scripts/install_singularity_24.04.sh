@@ -20,8 +20,15 @@ cd singularity
 git fetch --all --tags
 git checkout ${SING_VER}
 
-./mconfig
+# Configure with seccomp support enabled
+./mconfig --with-seccomp
 make -C builddir
 make -C builddir install
+
+# Install singularity-cache-cleaner systemd service
+install -m 755 /home/jfs/00-VScode-Projects/singularity-ubuntu-installer/scripts/clean_cache.sh /usr/local/bin/singularity-cache-cleaner
+install -m 644 /home/jfs/00-VScode-Projects/singularity-ubuntu-installer/systemd/singularity-cache-cleaner.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable singularity-cache-cleaner.service
 
 singularity --version

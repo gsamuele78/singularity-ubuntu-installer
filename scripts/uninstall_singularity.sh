@@ -2,13 +2,14 @@
 set -euo pipefail
 
 rm -f /usr/local/bin/singularity
+rm -f /usr/local/bin/singularity-cache-cleaner
 rm -rf /usr/local/libexec/singularity
 rm -rf /usr/local/etc/singularity
 rm -rf /usr/local/var/singularity
 rm -rf /usr/local/src/singularity
 rm -rf /usr/local/go
 
-apt remove -y uuid-dev libgpgme-dev libseccomp-dev pkg-config squashfs-tools cryptsetup
+apt remove -y build-essential uuid-dev libgpgme-dev libseccomp-dev pkg-config git wget squashfs-tools cryptsetup
 apt autoremove -y
 
 systemctl disable --now singularity-cache-cleaner.service || true
