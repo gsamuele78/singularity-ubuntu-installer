@@ -18,7 +18,7 @@ jobs:
         run: |
           export PATH=$PATH:/usr/local/go/bin
           cd /usr/local/src
-          sudo git clone https://github.com/sylabs/singularity.git
+          sudo git clone --recurse-submodules https://github.com/sylabs/singularity.git
           cd singularity
           sudo ./mconfig
           sudo make -C builddir

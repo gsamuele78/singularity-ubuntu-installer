@@ -14,11 +14,13 @@ tar -C /usr/local -xzf go${GO_VER}.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 
 if [ ! -d singularity ]; then
-    git clone https://github.com/sylabs/singularity.git
+    git clone --recurse-submodules https://github.com/sylabs/singularity.git
 fi
 cd singularity
 git fetch --all --tags
 git checkout ${SING_VER}
+# Ensure submodules (squashfuse, etc.) are initialized for the checked-out tag
+git submodule update --init --recursive
 
 # Configure Singularity (seccomp support is enabled by default)
 ./mconfig
