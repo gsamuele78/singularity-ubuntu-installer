@@ -70,11 +70,11 @@ EOF
 #SingularityCE will now be able to create unprivileged user namespaces on your system
 systemctl reload apparmor
 
-cd "$SCRIPT_DIR"
+#cd "$SCRIPT_DIR"
 
 # Install singularity-cache-cleaner systemd service
-install -m 755 ./scripts/clean_cache.sh /usr/local/bin/singularity-cache-cleaner
-install -m 644 ./systemd/singularity-cache-cleaner.service /etc/systemd/system/
+install -m 755 "${SCRIPT_DIR}/scripts/clean_cache.sh /usr/local/bin/singularity-cache-cleaner"
+install -m 644 "${SCRIPT_DIR}/systemd/singularity-cache-cleaner.service /etc/systemd/system/"
 systemctl daemon-reload
 systemctl enable singularity-cache-cleaner.service
 
